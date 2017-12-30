@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var qs = require('querystring');
-var host = 'http://localhost:8000';
+// var host = 'http://localhost:8000';
+var host = "*"
 var connection = require('./../config');
 
 router.post('/', function(req, res) {
@@ -27,12 +28,12 @@ module.exports = router;
 
 
 User.prototype.save = function save(callback) {
-  console.log("open save");
   var user = {
     username: this.username,
     password: this.password
   };
 
+  console.log("start save");
   var cmd = "INSERT INTO user(username, password) VALUES(?,?)";
 
   connection.query(cmd, [user.username, user.password], function (err,result) {

@@ -2,7 +2,9 @@ require('dotenv').config();
 var express = require('express');
 var app = express()
 var reg = require('./routes/reg.js')
+var flash = require('connect-flash')
 app.use('/reg', reg);
+app.use(flash());
 //
 //
 // var express     = require('express');

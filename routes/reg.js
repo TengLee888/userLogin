@@ -8,7 +8,7 @@ var host = 'http://localhost:8000';
 
 
 router.post('/', function(req, res) {
-  res.header('Access-Control-Allow-Origin', host);
+  res.header('Access-Control-Allow-Origin', '*');
   var formData = '';
   req.on("data", function (data) {
     formData += data;   //eg: username=tenglee&email=abc123%40gmail.com
