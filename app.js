@@ -22,7 +22,7 @@ var port = process.env.PORT || 8012;
 // routes
 app.use(express.static('public'));
 app.get('/',function(req,res){
-     res.sendFile(__dirname + '/index.html');
+     // res.sendFile(__dirname + '/index.html');
      res.send('hello')
 });
 app.use('/', reg);
