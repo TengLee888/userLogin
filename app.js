@@ -15,7 +15,9 @@ var favicon = require('serve-favicon')
 // var config = require('./config'); // get our config file
 // var router = require('./router');
 var port = process.env.PORT || 8012;
-// app.use(favicon(__dirname + '/favicon.ico'))
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
+
 // routes
 app.use(express.static('public'));
 app.get('/',function(req,res){
