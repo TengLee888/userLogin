@@ -15,25 +15,27 @@ var favicon = require('serve-favicon')
 // var config = require('./config'); // get our config file
 // var router = require('./router');
 var port = process.env.PORT || 8012;
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 
 // routes
 app.use(express.static('public'));
 app.get('/',function(req,res){
      res.sendFile(__dirname + '/index.html');
+     res.send('hello')
 });
 app.use('/', reg);
-
-
-
-
-
 
 
 // start the server
 app.listen(port);
 console.log('Magic happens at http://localhost:' + port);
+
+
+
+
+
 // var cool = require('cool-ascii-faces');
 // var express = require('express');
 // var app = express();
