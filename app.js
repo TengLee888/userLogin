@@ -3,8 +3,9 @@ var express = require('express');
 var app = express()
 var reg = require('./routes/reg.js')
 var flash = require('connect-flash')
-app.use('/reg', reg);
-app.use(flash());
+var path    = require("path");
+// app.use('/reg', reg);
+// app.use(flash());
 //
 //
 // var express     = require('express');
@@ -15,6 +16,10 @@ app.use(flash());
 var port = process.env.PORT || 8012;
 
 // routes
+app.use(express.static('public'));
+app.get('/',function(req,res){
+     res.sendFile(__dirname + '/index.html');
+});
 app.use('/', reg);
 
 

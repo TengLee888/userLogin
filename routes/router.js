@@ -5,6 +5,10 @@ var qs = require('querystring');
 var host = "*"
 var connection = require('./../config');
 
+// router.get('/',function(req,res){
+//   res.sendFile('index.html');
+// });
+
 router.post('/', function(req, res) {
   var user = {
     username: this.username,
@@ -27,7 +31,7 @@ router.post('/', function(req, res) {
 module.exports = router;
 
 
-User.prototype.save = function save(callback) {
+User.prototype.saveUser = function saveUser(callback) {
   var user = {
     username: this.username,
     password: this.password
