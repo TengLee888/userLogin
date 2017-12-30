@@ -4,6 +4,7 @@ var app = express()
 var reg = require('./routes/reg.js')
 var flash = require('connect-flash')
 var path    = require("path");
+var favicon = require('serve-favicon')
 // app.use('/reg', reg);
 // app.use(flash());
 //
