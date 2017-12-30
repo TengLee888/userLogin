@@ -15,15 +15,15 @@ var favicon = require('serve-favicon')
 // var config = require('./config'); // get our config file
 // var router = require('./router');
 var port = process.env.PORT || 8012;
-
+// uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 
 // routes
 // app.use(express.static('public'));
 app.get('/',function(req,res){
-     // res.sendFile(__dirname + '/index.html');
-     res.send('hello')
+     res.sendFile(__dirname + '/index.html');
+     // res.send('hello')
 });
 // app.use('/', reg);
 
