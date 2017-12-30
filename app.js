@@ -1,7 +1,7 @@
 require('dotenv').config();
 var express = require('express');
 var app = express()
-// var reg = require('./routes/reg.js')
+var reg = require('./routes/reg.js')
 var flash = require('connect-flash')
 var path    = require("path");
 var favicon = require('serve-favicon')
@@ -23,9 +23,7 @@ var port = process.env.PORT || 8012;
 // app.use(express.static('public'));
 app.get('/',function(req,res){
      res.sendFile(__dirname + '/index.html');
-     // res.send('hello')
 });
-// app.use('/', reg);
 
 
 // start the server
