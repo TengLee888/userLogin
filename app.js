@@ -33,7 +33,8 @@ app.use(cookieParser());
 app.use('/', routes);
 // get home page
 app.get('/',function(req,res){
-     res.sendFile(__dirname + '/index.html');
+     // res.sendFile(__dirname + '/index.html');
+     res.send('Hello')
 });
 
 // start the server
