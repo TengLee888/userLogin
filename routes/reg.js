@@ -3,12 +3,11 @@ var router = express.Router();
 var User = require('../models/user.js');
 var crypto = require('crypto');
 var qs = require('querystring');
-var host = 'http://localhost:8000';
-
+var host = process.env.PORT; //TODO: 跨網域
 
 
 router.post('/', function(req, res) {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', host);
   var formData = '';
   req.on("data", function (data) {
     formData += data;   //eg: username=tenglee&email=abc123%40gmail.com

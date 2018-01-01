@@ -6,32 +6,39 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser  = require('body-parser');
 var flash = require('connect-flash');
+// var routes = require('./routes/index');
+var routes = require('./routes/reg');
 
-
-var routes = require('./routes/index');
 // var Users = require('./routes/users');
+// var User = require('./models/user.js');
 
 var app = express();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8012;
 app.set('views' , path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
 
-// uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+// // uncomment after placing your favicon in /public
+// // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false })); //TODO:註解這個收不到前端的東西
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-// app.use('/view', express.static(__dirname + '/view'));
+
+
+
+
+
+// routes
 app.use('/', routes);
-
-
-//get home page
+// get home page
 app.get('/',function(req,res){
      res.sendFile(__dirname + '/index.html');
 });
+
+// start the server
+app.listen(port);
+console.log('Magic happens at http://localhost:' + port);
 
 
 
@@ -68,16 +75,3 @@ app.get('/',function(req,res){
 //     error: err
 //   });
 // })
-
-
-
-
-
-
-
-
-
-
-// start the server
-app.listen(port);
-console.log('Server Start, http://localhost:' + port);

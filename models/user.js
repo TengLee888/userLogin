@@ -46,6 +46,7 @@ User.prototype.saveUser = function saveUser(user) {
 
 
 
+
 User.getUserNumByName = function getUserNumByName(username, callback) {
   //使用username 來檢查是否有資料
   var cmd = "select COUNT(1) AS num from user info where username = ?";
