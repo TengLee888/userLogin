@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser  = require('body-parser');
 var flash = require('connect-flash');
 // var routes = require('./routes/index');
-var routes = require('./routes/reg');
+// var routes = require('./routes/reg');
 
 // var Users = require('./routes/users');
 // var User = require('./models/user.js');
@@ -30,7 +30,7 @@ app.use(cookieParser());
 
 
 // routes
-app.use('/', routes);
+// app.use('/', routes);
 // get home page
 app.get('/',function(req,res){
      // res.sendFile(__dirname + '/index.html');
