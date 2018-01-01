@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>Login</title>
+  <link rel="stylesheet" href="stylesheets/print.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </head>
-<body>
-  <h1>Login- Memonote</h1>
+<body class="login_backgorund">
+  <!-- <h1>Login- Memonote</h1> -->
   <!-- <div id="signup">
     <label>使用者名稱：</label>
     <input type="text" id="username" name="username" /><br>
@@ -15,16 +16,20 @@
     <input type="submit" value="註冊我的帳號" /><br>
   </div> -->
 
-  <form class="form-signin" role="form" method="post">
-    <h2 class="form-signin-heading">註冊</h2>
+<div class="login_style">
+  <h1>Memonote</h1>
+  <h3 class="subTitle_style">登入</h3>
+  <form role="form" method="post">
+    <input id="username" name="username" type="text" class="form-control" placeholder="帳號" required /><br>
+    <input id="email"  name="email" type="text" class="form-control" placeholder="信箱" required/><br>
+    <input id="password" name="password" type="password" class="form-control" placeholder="密碼" required/><br>
+    <input id="rePassword"  name="rePassword" type="password" class="form-control" placeholder="再輸入密碼" required/><br>
+    <button id="btnSub" class="btn_style login_btn_style" type="submit">註冊</button>
+    <p>OR</p>
+    <a class="FB_btn_style"  role="button">Facebook Login</a>
+  </form>
 
-    <input id="username" name="username" type="text" class="form-control" placeholder="帳號" required />
-    <input id="email"  name="email" type="text" class="form-control" placeholder="信箱" required/>
-    <input id="password" name="password" type="password" class="form-control" placeholder="密碼" required/>
-    <input id="rePassword"  name="rePassword" type="password" class="form-control" placeholder="再輸入密碼" required/>
-    <button id="btnSub" class="btn btn-lg btn-primary" type="submit">註冊</button>
-   <a class="btn btn-link"  role="button">登入</a>
-</form>
+</div>
   <script type="text/javascript">
   $(function(){
     $('#btnSub').click(function(e){

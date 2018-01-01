@@ -1,0 +1,27 @@
+/* line 2, ../../sass/partials/notesPart.scss */
+.notes_block_style {
+  margin-left: 80px;
+  width: 200px;
+  height: 100%;
+}
+
+/* line 11, ../../sass/partials/notesPart.scss */
+.notes_control_style {
+  height: 80px;
+  border: 1px solid #ececec;
+}
+
+/* line 17, ../../sass/partials/notesPart.scss */
+.note_style {
+  height: 100px;
+  width: 100%;
+  padding: 15px 20px;
+  border-bottom: 1px solid #ececec;
+  transition: all .1s;
+  cursor: pointer;
+}
+
+/* line 27, ../../sass/partials/notesPart.scss */
+.note_style:hover {
+  border: 1px solid #03a87c;
+}

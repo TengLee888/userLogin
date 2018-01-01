@@ -1,0 +1,180 @@
+/* line 8, ../../sass/partials/main.scss */
+input, textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  outline: none;
+}
+
+/* line 17, ../../sass/partials/main.scss */
+.nav_style {
+  position: fixed;
+  width: 80px;
+  height: 100%;
+  left: 0;
+  background-color: #f8f8f8;
+  border-right: 1px solid #ececec;
+}
+/* line 25, ../../sass/partials/main.scss */
+.nav_style img {
+  cursor: pointer;
+}
+/* line 29, ../../sass/partials/main.scss */
+.nav_style .newNotes_style {
+  width: 30px;
+  height: 30px;
+  margin-top: 80px;
+  margin-left: 22px;
+}
+
+/* line 42, ../../sass/partials/main.scss */
+.write_note_area_style {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin-left: 280px;
+  border-left: 1px solid #ececec;
+  min-width: 500px;
+  padding: 0 40px;
+}
+
+/* line 52, ../../sass/partials/main.scss */
+.question_container {
+  position: relative;
+  height: 100vh;
+  border-bottom: 1px #DCDCDC solid;
+}
+
+/* line 59, ../../sass/partials/main.scss */
+.question_style {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 400px;
+  height: fit-content;
+}
+/* line 68, ../../sass/partials/main.scss */
+.question_style input {
+  margin: 15px 0;
+}
+
+/* line 74, ../../sass/partials/main.scss */
+.textarea_style {
+  height: 200px;
+  border: 1px solid #A9A9A9;
+  border-radius: 4px;
+}
+
+/* line 85, ../../sass/partials/main.scss */
+.points_style {
+  margin-top: 30px;
+}
+/* line 87, ../../sass/partials/main.scss */
+.points_style .point_style {
+  position: relative;
+  margin: 12px 0;
+  padding: 15px;
+  border: 1px solid #D3D3D3;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+/* line 100, ../../sass/partials/main.scss */
+.points_style .point_style textarea {
+  min-height: 50px;
+  height: fit-content;
+}
+
+/* line 106, ../../sass/partials/main.scss */
+.point_style:hover {
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* line 112, ../../sass/partials/main.scss */
+.removePoint_style {
+  position: absolute;
+  top: 7px;
+  right: 6px;
+  opacity: 0;
+  cursor: pointer;
+  transform: translateY(-5px);
+}
+
+/* line 120, ../../sass/partials/main.scss */
+.point_style:hover .removePoint_style {
+  color: #A9A9A9;
+  opacity: 1;
+  transition: .5s;
+  transform: translateY(0px);
+}
+
+/* line 126, ../../sass/partials/main.scss */
+.blank_behind_remove {
+  width: 20px;
+  height: 20px;
+  float: right;
+}
+
+/* line 133, ../../sass/partials/main.scss */
+.title_style {
+  margin-bottom: 20px;
+}
+
+/* line 139, ../../sass/partials/main.scss */
+.summary_style {
+  margin: 50px auto;
+  width: 400px;
+}
+
+/* line 156, ../../sass/partials/main.scss */
+.btn_style {
+  display: inline-block;
+  margin: 10px 15px 10px 0;
+  padding: 0 14px;
+  border: 1px solid #03a87c;
+  color: #03a87c;
+  border-radius: 4px;
+  line-height: 30px;
+  font-size: 15px;
+  font-family: sans-serif;
+  cursor: pointer;
+  transition: .3s;
+}
+
+/* line 170, ../../sass/partials/main.scss */
+.btn_style:hover {
+  background-color: #03a87c;
+  color: #fff;
+}
+
+/* line 176, ../../sass/partials/main.scss */
+.btn_upgrade {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  border-color: #ff8001;
+  background-color: #ff8001;
+  color: #fff;
+  transition: .3s;
+  z-index: 10;
+}
+
+/* line 186, ../../sass/partials/main.scss */
+.btn_upgrade:hover {
+  background-color: #fff;
+  color: #ff8001;
+}
+
+/* line 192, ../../sass/partials/main.scss */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+/* line 195, ../../sass/partials/main.scss */
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}

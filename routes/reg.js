@@ -6,6 +6,12 @@ var qs = require('querystring');
 var host = process.env.HOST; //TODO: 跨網域
 
 
+// get home page
+router.get('/login',function(req,res){
+  res.render('login')
+});
+
+
 router.post('/', function(req, res) {
   res.header('Access-Control-Allow-Origin', host);
   var formData = '';

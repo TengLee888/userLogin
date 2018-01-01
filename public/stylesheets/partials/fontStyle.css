@@ -1,0 +1,32 @@
+/* line 2, ../../sass/partials/fontStyle.scss */
+textarea, pre, .font_color {
+  color: #373D3F;
+}
+
+/* line 6, ../../sass/partials/fontStyle.scss */
+.topic, input {
+  color: #03a87c;
+}
+
+/* line 11, ../../sass/partials/fontStyle.scss */
+.point_style, pre, textarea, textarea:focus {
+  font-family: sans-serif;
+  font-size: 19px;
+  line-height: 19px;
+}
+
+/* line 19, ../../sass/partials/fontStyle.scss */
+.title_style {
+  margin-bottom: 20px;
+  font-size: 34px;
+  font-family: sans-serif;
+  color: #03a87c;
+}
+
+/* line 27, ../../sass/partials/fontStyle.scss */
+.note_topic_style {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-family: sans-serif;
+  color: #03a87c;
+}

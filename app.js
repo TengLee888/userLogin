@@ -6,11 +6,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser  = require('body-parser');
 var flash = require('connect-flash');
-// var routes = require('./routes/index');
-var routes = require('./routes/reg');
+// var routes = require('./routes/index');  //書上的例子，嘗試整合中
+var routes = require('./routes/reg'); // 使用版
+
 
 // var Users = require('./routes/users');
 // var User = require('./models/user.js');
+
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -22,20 +24,12 @@ app.set('view engine', 'ejs');
 
 // // uncomment after placing your favicon in /public
 // // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(logger('dev'));
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false })); //TODO:註解這個收不到前端的東西
 app.use(cookieParser());
 app.use('/', routes);
-
-
-
-
-// get home page
-app.get('/',function(req,res){
-     res.sendFile(__dirname + '/index.html');
-     // res.send('Hello')
-});
 
 
 
@@ -48,7 +42,7 @@ app.listen(port , function(){
 
 
 
-// catch 404 and forward to error handler
+// // catch 404 and forward to error handler
 // app.use(function(req, res, next){
 //   var err = new Error('Not Found');
 //   err.status = 404;

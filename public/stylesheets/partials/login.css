@@ -1,0 +1,78 @@
+/* line 7, ../../sass/partials/login.scss */
+.login_backgorund {
+  background-color: #f8f8f8;
+}
+
+/* line 13, ../../sass/partials/login.scss */
+.login_style {
+  font-family: sans-serif;
+  position: relative;
+  width: 280px;
+  min-height: 400px;
+  padding: 60px;
+  margin: 100px auto;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+/* line 15, ../../sass/partials/login.scss */
+.login_style h1, .login_style h3 {
+  color: #373D3F;
+  font-size: 32px;
+  margin: 0 auto 25px;
+}
+/* line 20, ../../sass/partials/login.scss */
+.login_style p {
+  color: #373D3F;
+}
+/* line 32, ../../sass/partials/login.scss */
+.login_style .subTitle_style {
+  font-size: 26px;
+}
+/* line 35, ../../sass/partials/login.scss */
+.login_style input {
+  margin-bottom: 7px;
+  background-color: #f0f0f0;
+  border: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-radius: 3px;
+  font-weight: bold;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  color: #333;
+  font-size: 14px;
+  outline: none;
+}
+/* line 54, ../../sass/partials/login.scss */
+.login_style .login_btn_style {
+  width: 100%;
+  background-color: #03a87c;
+  color: #fff;
+  line-height: 40px;
+}
+/* line 60, ../../sass/partials/login.scss */
+.login_style .login_btn_style:hover {
+  background-color: #fff;
+  border: 1px solid #03a87c;
+  color: #03a87c;
+}
+/* line 65, ../../sass/partials/login.scss */
+.login_style .FB_btn_style {
+  display: inline-block;
+  width: 100%;
+  padding: 0;
+  background-color: #4267b2;
+  color: #fff;
+  font-family: sans-serif;
+  border-radius: 4px;
+  line-height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+}
