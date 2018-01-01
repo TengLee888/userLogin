@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-// var User = require('../models/user.js');
+var User = require('../models/user.js');
 var crypto = require('crypto');
 var qs = require('querystring');
-var host = process.env.PORT; //TODO: 跨網域
+var host = process.env.HOST; //TODO: 跨網域
 
 
 router.post('/', function(req, res) {
@@ -14,9 +14,8 @@ router.post('/', function(req, res) {
   });
   req.on("end", function () {
     var user = qs.parse(formData); // user:  { username: 'tenglee', email: 'abc123@gmail.com' }
-    // console.log("user: " , user);
-    // User.prototype.saveUser(user)
-    console.log(process.env.DB_NAME);
+    // console.log("backend received user: " , user);  
+    User.prototype.saveUser(user)
     res.send(user);
   });
 
