@@ -16,6 +16,7 @@ router.post('/', function(req, res) {
     var user = qs.parse(formData); // user:  { username: 'tenglee', email: 'abc123@gmail.com' }
     // console.log("user: " , user);
     // User.prototype.saveUser(user)
+    console.log(process.env.DB_NAME);
     res.send(user);
   });
 
