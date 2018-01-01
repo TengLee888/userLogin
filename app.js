@@ -13,7 +13,7 @@ var routes = require('./routes/reg');
 // var User = require('./models/user.js');
 
 var app = express();
-var port = process.env.PORT || 8012;
+var port = process.env.PORT || 3000;
 app.set('views' , path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -37,10 +37,12 @@ app.get('/',function(req,res){
 });
 
 // start the server
-app.listen(port);
-console.log('Magic happens at http://localhost:' + port);
+// app.listen(port);
+// console.log('Magic happens at http://localhost:' + port);
 
-
+app.listen(port , function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 
 
