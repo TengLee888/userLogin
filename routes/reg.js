@@ -14,8 +14,8 @@ router.post('/', function(req, res) {
   });
   req.on("end", function () {
     var user = qs.parse(formData); // user:  { username: 'tenglee', email: 'abc123@gmail.com' }
-    // console.log("backend received user: " , user);  
-    User.prototype.saveUser(user)
+    // console.log("backend received user: " , user);
+    // User.prototype.saveUser(user)
     res.send(user);
   });
 

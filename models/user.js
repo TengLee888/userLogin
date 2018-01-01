@@ -26,27 +26,27 @@ function User(user){
   this.password = user.password;
   this.email = user.email;
 };
-
-
-
-//儲存使用者資訊
-User.prototype.saveUser = function saveUser(user) {
-  //要存入資料故的使用者檔案
-  // var user = {
-  //   username = this.username,
-  //   password = this.password,
-  //   email = this.email
-  // }
-  var cmd = "INSERT INTO users (username, password) VALUES (? , ?)";
-  console.log('saveUser: ' , user);
-  connection.query(cmd, [user.username , user.password] , function (err,result) {
-    if (err) {
-      return;
-    }
-    // connection.release(); //TODO:好像要用createPool
-    // callback(err,result);
-  });
-};
+//
+//
+//
+// //儲存使用者資訊
+// User.prototype.saveUser = function saveUser(user) {
+//   //要存入資料故的使用者檔案
+//   // var user = {
+//   //   username = this.username,
+//   //   password = this.password,
+//   //   email = this.email
+//   // }
+//   var cmd = "INSERT INTO users (username, password) VALUES (? , ?)";
+//   console.log('saveUser: ' , user);
+//   connection.query(cmd, [user.username , user.password] , function (err,result) {
+//     if (err) {
+//       return;
+//     }
+//     // connection.release(); //TODO:好像要用createPool
+//     // callback(err,result);
+//   });
+// };
 
 
 
