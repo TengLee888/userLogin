@@ -1,9 +1,5 @@
 require('dotenv').config();
 var mysql = require('mysql');
-var DB_NAME=
-DB_HOST=
-DB_USER=
-DB_PASS=
 var connection = mysql.createConnection({
   // host     : process.env.DB_HOST,
   // user     : process.env.DB_USER,
