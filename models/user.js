@@ -1,77 +1,84 @@
-require('dotenv').config();
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-  host     : process.env.DB_HOST,
-  user     : process.env.DB_USER,
-  password : process.env.DB_PASS,
-  database : process.env.DB_NAME
-});
-
-connection.connect(function(err){
-  if(!err) {
-    console.log("Database is connected");
-  } else {
-    console.log("Error while connecting with database");
-    throw err
-  }
-});
+// var mongodb = require('./db')
 
 
 function User(user){
-  this.username = user.username;
-  this.password = user.password;
   this.email = user.email;
+  this.password = user.password;
 };
-
-
-
-//儲存使用者資訊
-User.prototype.saveUser = function saveUser(user) {
-  //要存入資料故的使用者檔案
-  // var user = {
-  //   username = this.username,
-  //   password = this.password,
-  //   email = this.email
-  // }
-  var cmd = "INSERT INTO users (username, password) VALUES (? , ?)";
-  console.log('saveUser: ' , user);
-  connection.query(cmd, [user.username , user.password] , function (err,result) {
-    if (err) {
-      return;
-    }
-    // connection.release(); //TODO:好像要用createPool
-    // callback(err,result);
-  });
-};
-
-
-
-
-User.getUserNumByName = function getUserNumByName(username, callback) {
-  //使用username 來檢查是否有資料
-  var cmd = "select COUNT(1) AS num from user info where username = ?";
-  connection.query(cmd, [username], function (err, result) {
-    if (err) {
-      return;
-    }
-    connection.release();
-    //查詢結果使用 callback 呼叫，並將 err, result 參數帶入
-    callback(err,result);
-  });
-};
-//透過帳號取得使用者資料
-User.getUserByUserName = function getUserNumByName(username, callback) {
-  var cmd = "select * from user where username = ?";
-  connection.query(cmd, [username], function (err, result) {
-    if (err) {
-      return;
-    }
-    connection.release();
-    callback(err,result);
-  });
-};
-
-
-
 
 module.exports = User;
+
+
+
+
+User.prototype.save = function (callback) {
+  //要存入資料故的使用者檔案
+  var user = {
+    email: this.email,
+    password: this.password
+  }
+}
+
+
+
+
+//打開資料庫
+MongoClient.connect(url, function(err, client) {
+  assert.equal(null, err);
+  if(err){
+    // return callback(err)  //TODO:這樣寫也行？
+    return console.log('Error:'+ err);
+  }
+  console.log("Connected successfully to server");
+  const db = client.db(dbName);
+
+
+  // 讀取user集合
+  db.collection('users' , function(err , collection){
+    if(err){
+      mongodb.close();
+      return console.log('Error:'+ err);
+    }
+    //將使用者資料插入 users集合
+    collection.insert(users , {
+      safe: true
+    } , function(err , user){
+      mongodb.close();
+      if(err){
+        return console.log('Error:'+ err);
+      }
+      // callback(null , user[0]); //成功，err為null, 並回傳儲存後的使用者文檔
+    });
+  });
+});
+
+
+
+//讀取使用者資訊
+User.get = function(name , callback){
+  //打開資料庫
+  mongodb.open(function(err , db){
+    if(err){
+      // return callback(err);
+      return err
+    }
+    // 讀取user集合
+    db.collection('users' , function(err , collection){
+      if(err){
+        mongodb.close();
+        // return callback(err);
+        return err
+      }
+      //查詢用戶名(name key)value為name的筆記
+      collection.findOne({
+        name:name
+      }, function(err , user){
+        if(err){
+          // return callback(err);
+          return err
+        }
+        callback(null , user); //成功，傳回查詢的使用者資訊
+      })
+    })
+  })
+}

@@ -1,5 +1,6 @@
 config.rb
 config/config.json
+settings.js
 
 # Logs
 logs

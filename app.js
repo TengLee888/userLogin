@@ -6,12 +6,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser  = require('body-parser');
 var flash = require('connect-flash');
-// var routes = require('./routes/index');  //書上的例子，嘗試整合中
-var routes = require('./routes/reg'); // 使用版
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var routes = require('./routes/index');  //書上的例子，嘗試整合中
+// var routes = require('./routes/reg'); // 使用版
+var settings = require('./settings');
 
-
-// var Users = require('./routes/users');
-// var User = require('./models/user.js');
 
 
 var app = express();
@@ -27,10 +27,21 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(logger('dev'));
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false })); //TODO:註解這個收不到前端的東西
+app.use(bodyParser.urlencoded({ extended: false })); //TODO:註解這個收不到前端的東西
 app.use(cookieParser());
-app.use('/', routes);
+app.use(flash())
+// app.use(session({
+//   secret: settings.cookieSecret,
+//   key: settings.db,  //cookieName
+//   cookie: {maxAge: 1000*60*60*24*7}, // 7days
+//   store: new MongoStore({
+//     db: settings.dbName,
+//     host: settings.host,
+//     port: settings.port
+//   })
+// }))
 
+app.use('/', routes);
 
 
 
@@ -41,7 +52,7 @@ app.listen(port , function(){
 
 
 
-
+// debug功能 暫時先不用
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next){
 //   var err = new Error('Not Found');
