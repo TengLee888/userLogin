@@ -7,8 +7,8 @@ var crypto = require('crypto');
 
 
 // Database
-var url ='heroku_xj85pq2p'
-var dbName ='mongodb://tenglee:Harvest888!!!@ds113282.mlab.com:13282/heroku_xj85pq2p'
+var dbName ='heroku_xj85pq2p'
+var url ='mongodb://tenglee:Harvest888!!!@ds113282.mlab.com:13282/heroku_xj85pq2p'
 // var url = process.env.DB_URL;
 // var dbName = process.env.DB_NAME
 var MongoClient = require('mongodb').MongoClient;
