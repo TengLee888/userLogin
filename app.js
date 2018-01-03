@@ -10,7 +10,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var routes = require('./routes/index');  //書上的例子，嘗試整合中
 // var routes = require('./routes/reg'); // 使用版
-var settings = require('./settings');
+// var settings = require('./settings');
 
 
 
