@@ -21,6 +21,12 @@ function User(user){
 };
 
 
+// mainPage
+router.get('/' , function(req , res){
+  res.render('index')
+});
+
+
 
 // 用戶註冊
 router.get('/reg' , function(req , res){
