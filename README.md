@@ -1,10 +1,5 @@
 ## 練習 user login
-- 有三個server.js，分別是不一樣的練習
-- server1.js、server2.js練習用http、serverExpress鍊習用Express
-  - config.js用在上面三個檔案
-  - router.js給serverExpress用
-- app.js才多了使用者的資料會寫到database
-  - models, reg.js用在app.js
+- 接上database 驗證註冊和登入
 
 ## 參考
 https://ithelp.ithome.com.tw/articles/10161458

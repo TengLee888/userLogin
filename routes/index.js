@@ -142,53 +142,54 @@ router.post('/reg' , function(req , res){
 
   //成功版本，嘗試做callback
   // Use connect method to connect to the server
-  // MongoClient.connect(url, function(err,client) {
-  //   assert.equal(null, err);
-  //   console.log("Connected successfully to server");
-  //   var db = client.db(dbName);
-  //
-  //   //檢查用戶名是否已存在
-  //   db.collection('users').findOne({email:email}, function(err, result) {
-  //     if (err) throw err;
-  //     console.log("result: " , result);
-  //     if(!result){
-  //       console.log(result, "此信箱尚未註冊");
-  //       insertDocuments(db , function(){
-  //         db.close();
-  //       })
-  //       // return res.redirect('/')
-  //     }
-  //
-  //     console.log(result, "此信箱已註冊");
-  //     // return res.redirect('/login')
-  //     db.close();
-  //   });
+  MongoClient.connect(url, function(err,client) {
+    assert.equal(null, err);
+    console.log("Connected successfully to server");
+    var db = client.db(dbName);
 
-  // var insertDocuments = function(db, callback) {
-  //   var collection = db.collection('users');
-  //   collection.insertOne(
-  //     newUser,
-  //     function(err, result) {
-  //       console.log("Inserted user information into the database: " , newUser);
-  //       callback(result);
-  //     }
-  //   );
-  // };
+    //檢查用戶名是否已存在
+    db.collection('users').findOne({email:email}, function(err, result) {
+      if (err) throw err;
+      console.log("result: " , result);
+      if(!result){
+        console.log(result, "此信箱尚未註冊");
+        insertDocuments(db , function(){
+          db.close();
+        })
+        // return res.redirect('/')
+      }
 
-  // var findDocuments = function(db, callback) {
-  //   var collection = db.collection('users');
-  //   collection.find({email: '123465236'}).toArray(function(err, docs) {
-  //     assert.equal(err, null);
-  //     console.log("Found the following records");
-  //     console.log(docs);
-  //     if(docs == []){
-  //       console.log(" 此信箱尚未註冊");
-  //       // insertDocuments()
-  //     }else{
-  //       console.log(" 此信箱已註冊");
-  //     }
-  //     callback(docs);
-  //   });
+      console.log(result, "此信箱已註冊");
+      // return res.redirect('/login')
+      db.close();
+    });
+
+    var insertDocuments = function(db, callback) {
+      var collection = db.collection('users');
+      collection.insertOne(
+        newUser,
+        function(err, result) {
+          console.log("Inserted user information into the database: " , newUser);
+          callback(result);
+        }
+      );
+    };
+
+    var findDocuments = function(db, callback) {
+      var collection = db.collection('users');
+      collection.find({email: '123465236'}).toArray(function(err, docs) {
+        assert.equal(err, null);
+        console.log("Found the following records");
+        console.log(docs);
+        if(docs == []){
+          console.log(" 此信箱尚未註冊");
+          // insertDocuments()
+        }else{
+          console.log(" 此信箱已註冊");
+        }
+        callback(docs);
+      });
+    };
   // console.log(result)
   // if(result){
   //   console.log(" 此信箱已註冊");
@@ -197,9 +198,9 @@ router.post('/reg' , function(req , res){
   // }else{
   //   console.log("開始註冊");
   //   // insertDocuments(db, function() {
-  //   // });
   // }
-  // callback(result);
+  callback(result);
+  });
 })
 
 

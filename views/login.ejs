@@ -32,7 +32,14 @@
           contentType:"application/x-www-form-urlencoded",
           // contentType: 'application/json', //TODO: 這個會失敗,去了解
           data: userInfo,
-          dataType:'text'
+          // dataType:'text',
+          success: function(data) {
+            console.log(data)
+            if (data) {
+              alert(data.msg);
+              window.location.href = data.redirect;
+            }
+          }
       });
     });
   });
