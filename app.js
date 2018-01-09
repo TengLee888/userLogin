@@ -29,7 +29,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })); //TODO:註解這個收不到前端的東西
 app.use(cookieParser());
-app.use(flash())
+// app.use(flash())
 // app.use(session({
 //   secret: settings.cookieSecret,
 //   key: settings.db,  //cookieName

@@ -7,12 +7,12 @@ var crypto = require('crypto');
 
 
 // Database
-var dbName ='heroku_xj85pq2p'
-var url ='mongodb://tenglee:Harvest888!!!@ds113282.mlab.com:13282/heroku_xj85pq2p'
-// var url = process.env.DB_URL;
-// var dbName = process.env.DB_NAME
+var url = process.env.DB_URL;
+var dbName = process.env.DB_NAME
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
+
+
 
 
 function User(user){
@@ -21,6 +21,70 @@ function User(user){
 };
 
 
+
+
+// 儲存使用者資訊
+User.prototype.save = function(callback) {
+  //存入使用者的檔案
+  //當newUser的時候初始化
+  var user = {
+    email: this.email,
+    password: this.password
+  }
+
+  //打開資料庫
+  MongoClient.connect(url, function(err,client) {
+    assert.equal(null, err);
+    console.log("Connected successfully to server");
+    var db = client.db(dbName);
+    var collection = db.collection('users');
+    //註冊使用者資料
+    collection.insertOne(
+      user,
+      function(err, result) {
+        console.log("Inserted user information into the database: " , user);
+        callback(null , user); //成功！err為null, 傳回儲存後的使用者資訊
+      }
+    );
+  });
+};
+
+
+
+
+//讀取使用者資料
+User.get = function(email , callback){
+  MongoClient.connect(url, function(err,client) {
+    assert.equal(null, err);
+    console.log("Connected successfully to server");
+    var db = client.db(dbName);
+
+    //檢查用戶名是否已存在
+    db.collection('users').findOne({email:email}, function(err, result) {
+      if (err) {
+        db.close();
+        return callback(err);
+      }
+      console.log("result: " , result);
+      if(!result){
+        db.close();
+        console.log("email尚未註冊");
+        // insertDocuments(db , function(){
+        // })
+      }
+      db.close();
+      console.log("email已註冊");
+      return callback(null , result) //成功，傳回查詢的使用者資訊
+    });
+  });
+}
+
+
+var dataFront = {
+  redirect :'',
+  msg:''
+}
+
 // mainPage
 router.get('/' , function(req , res){
   res.render('index')
@@ -28,24 +92,21 @@ router.get('/' , function(req , res){
 
 
 
-
-
-
-
 // 用戶註冊
 router.get('/reg' , function(req , res){
   res.render('reg')
 });
+
+
 router.post('/reg' , function(req , res){
   console.log('req.body: ',req.body);
   var email = req.body.email;
   var password = req.body.password;
   var passwordRepeat = req.body.passwordRepeat
   if(password !== passwordRepeat){
-    // req.flash('error' , '兩次輸入的密碼不一致')
-    // res.send('兩次輸入的密碼不一致')
-    console.log('兩次輸入的密碼不一致');
-    return res.redirect('/reg')
+    dataFront.msg = '兩次輸入的密碼不一致';
+    dataFront.redirect =  '/reg'
+    return res.send(dataFront)
   }
 
 
@@ -58,29 +119,61 @@ router.post('/reg' , function(req , res){
   })
 
 
+  //檢查用戶是否存在
+  User.get(newUser.email , function(err , user){
+    if(user){
+      dataFront.msg = '該信箱已註冊';
+      dataFront.redirect =  '/login'
+      return res.send(dataFront)
+    }
+  })
+
+  //不存在則新增增加用戶
+  newUser.save(function(err , user){
+    if(user){
+      console.log('新增用戶');
+      dataFront.msg = '註冊成功';
+      dataFront.redirect =  '/'
+      return res.send(dataFront)
+    }
+  })
+
+
+
+  //成功版本，嘗試做callback
   // Use connect method to connect to the server
-  MongoClient.connect(url, function(err,client) {
-    assert.equal(null, err);
-    console.log("Connected successfully to server");
-    var db = client.db(dbName);
+  // MongoClient.connect(url, function(err,client) {
+  //   assert.equal(null, err);
+  //   console.log("Connected successfully to server");
+  //   var db = client.db(dbName);
+  //
+  //   //檢查用戶名是否已存在
+  //   db.collection('users').findOne({email:email}, function(err, result) {
+  //     if (err) throw err;
+  //     console.log("result: " , result);
+  //     if(!result){
+  //       console.log(result, "此信箱尚未註冊");
+  //       insertDocuments(db , function(){
+  //         db.close();
+  //       })
+  //       // return res.redirect('/')
+  //     }
+  //
+  //     console.log(result, "此信箱已註冊");
+  //     // return res.redirect('/login')
+  //     db.close();
+  //   });
 
-    //檢查用戶名是否已存在
-    db.collection('users').findOne({email:email}, function(err, result) {
-      if (err) throw err;
-      console.log("result: " , result);
-      if(!result){
-        console.log(result, "此信箱尚未註冊");
-        insertDocuments(db , function(){
-          db.close();
-        })
-        // res.redirect('/');
-      }
-
-      console.log(result, "此信箱已註冊");
-      db.close();
-      // res.redirect('/login');
-    });
-
+  // var insertDocuments = function(db, callback) {
+  //   var collection = db.collection('users');
+  //   collection.insertOne(
+  //     newUser,
+  //     function(err, result) {
+  //       console.log("Inserted user information into the database: " , newUser);
+  //       callback(result);
+  //     }
+  //   );
+  // };
 
   // var findDocuments = function(db, callback) {
   //   var collection = db.collection('users');
@@ -96,34 +189,23 @@ router.post('/reg' , function(req , res){
   //     }
   //     callback(docs);
   //   });
-    // console.log(result)
-    // if(result){
-    //   console.log(" 此信箱已註冊");
-    //   // req.flash('error' , '此信箱已註冊');
-    //   // res.send('此信箱已註冊');  //傳回login page
-    // }else{
-    //   console.log("開始註冊");
-    //   // insertDocuments(db, function() {
-    //   // });
-    // }
-    // callback(result);
-  })
+  // console.log(result)
+  // if(result){
+  //   console.log(" 此信箱已註冊");
+  //   // req.flash('error' , '此信箱已註冊');
+  //   // res.send('此信箱已註冊');  //傳回login page
+  // }else{
+  //   console.log("開始註冊");
+  //   // insertDocuments(db, function() {
+  //   // });
+  // }
+  // callback(result);
+})
 
 
-  // 如果不存在則新增用戶
-  // 輸入資料  Insert a Document
-  var insertDocuments = function(db, callback) {
-    var collection = db.collection('users');
-    collection.insertOne(
-      newUser,
-      function(err, result) {
-        console.log("Inserted documents into the collection: " , newUser);
-        res.redirect('/')
-        callback(result);
-      }
-    );
-  };
-});
+// 如果不存在則新增用戶
+
+
 
 
 

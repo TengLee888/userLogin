@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>註冊-ejs</title>
+  <title>註冊</title>
   <link rel="stylesheet" href="/stylesheets/print.css">
   <link rel="shortcut icon" href="">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -11,7 +11,7 @@
 
 <div class="login_style">
   <h1>Memonote</h1>
-  <h3 class="subTitle_style">註冊</h3>
+  <h3 class="subTitle_style">註冊-html</h3>
   <form role="form" method="post">
     <input id="email"  name="email" type="text" placeholder="信箱" required/><br>
     <input id="password" name="password" type="password" placeholder="密碼" required/><br>
@@ -30,19 +30,12 @@
       userInfo.passwordRepeat =  $("#passwordRepeat").val();
       console.log('userInfo: ' , userInfo)
       $.ajax({
-        url: '/reg',
-        type:"POST",
-        contentType:"application/x-www-form-urlencoded",
-        // contentType: 'application/json', //TODO: 這個會失敗,去了解
-        data: userInfo,
-        // dataType:'text'
-        success: function(data) {
-          console.log(data)
-          if (data) {
-            alert(data.msg);
-            window.location.href = data.redirect;
-          }
-        }
+          url: '/reg',
+          type:"POST",
+          contentType:"application/x-www-form-urlencoded",
+          // contentType: 'application/json', //TODO: 這個會失敗,去了解
+          data: userInfo
+          // dataType:'text'
       });
     });
   });
